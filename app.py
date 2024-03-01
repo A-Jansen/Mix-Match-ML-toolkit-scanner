@@ -19,12 +19,19 @@ labeled_data_tokens = {
 
 unlabeled_data_tokens = {
     'Audio*': {'Char': 'g', 'ASCII code': 103},
+    'Audio *': {'Char': 'g', 'ASCII code': 103},
     'Image*': {'Char': 'h', 'ASCII code': 104},
+    'Image *': {'Char': 'h', 'ASCII code': 104},
     'table*': {'Char': 'i', 'ASCII code': 105},
+    'table *': {'Char': 'i', 'ASCII code': 105},
     'text*': {'Char': 'j', 'ASCII code': 106},
+    'text *': {'Char': 'j', 'ASCII code': 106},
     'time series*': {'Char': 'k', 'ASCII code': 107},
+    'time series *': {'Char': 'k', 'ASCII code': 107},
     'series*': {'Char': 'k', 'ASCII code': 107},
-    'video*': {'Char': 'l', 'ASCII code': 108}
+    'series *': {'Char': 'k', 'ASCII code': 107},
+    'video*': {'Char': 'l', 'ASCII code': 108},
+    'video *': {'Char': 'l', 'ASCII code': 108}
 }
 
 supervised_learning_tokens = {
@@ -122,7 +129,25 @@ if img_file_buffer is not None:
     with st.spinner('Wait for it...'):
 
         detected_tokens, token_set = detect_tokens(result, token_dicts)
+        if not token_set:
+            img_pil = Image.fromarray(img_array)
+            # Rotate the image
+            rotated_img_pil = img_pil.rotate(90)
+            # Convert the rotated image back to a NumPy array
+            rotated_img_array = np.array(rotated_img_pil)
+            # turn image to numpy array
+            result = reader.readtext(rotated_img_array)
+            detected_tokens, token_set = detect_tokens(result, token_dicts)
+            if not token_set:
+                rotated_img_pil = img_pil.rotate(-90)
+                # Convert the rotated image back to a NumPy array
+                rotated_img_array = np.array(rotated_img_pil)
+                # turn image to numpy array
+                result = reader.readtext(rotated_img_array)
+                detected_tokens, token_set = detect_tokens(result, token_dicts)
+
         token_array = list(token_set)
+
         print(detected_tokens)
         print(token_array)
 
