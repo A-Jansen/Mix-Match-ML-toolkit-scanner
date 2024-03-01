@@ -108,6 +108,7 @@ def detect_tokens(ocr_output, token_dicts):
     return detected_tokens, token_set
 
 
+st.header("Mix & Match ML toolkit")
 oocsi_channel = st.text_input(
     'OOCSI channel (enter from the website)', 'MMMLtoolkit_')
 
