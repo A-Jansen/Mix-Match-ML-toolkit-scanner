@@ -12,6 +12,7 @@ labeled_data_tokens = {
     'Image': {'Char': 'b', 'ASCII code': 98},
     'table': {'Char': 'c', 'ASCII code': 99},
     'text': {'Char': 'd', 'ASCII code': 100},
+    'time series': {'Char': 'e', 'ASCII code': 101},
     'series': {'Char': 'e', 'ASCII code': 101},
     'video': {'Char': 'f', 'ASCII code': 102}
 }
@@ -21,6 +22,7 @@ unlabeled_data_tokens = {
     'Image*': {'Char': 'h', 'ASCII code': 104},
     'table*': {'Char': 'i', 'ASCII code': 105},
     'text*': {'Char': 'j', 'ASCII code': 106},
+    'time series*': {'Char': 'k', 'ASCII code': 107},
     'series*': {'Char': 'k', 'ASCII code': 107},
     'video*': {'Char': 'l', 'ASCII code': 108}
 }
@@ -93,7 +95,7 @@ def detect_tokens(ocr_output, token_dicts):
                     else:
                         print("else")
                         detected_tokens.add(
-                            (token))
+                            (token, token_type))
                         token_set.add(ascii_code)
 
     return detected_tokens, token_set
@@ -123,8 +125,13 @@ if img_file_buffer is not None:
         token_array = list(token_set)
         print(detected_tokens)
         print(token_array)
-    st.success(detected_tokens)
+
+    if not token_array:
+        st.warning(
+            "The site cannot detect the tokens in the image, please try retaking the image (with bettter light)")
+    else:
+        st.success("Detected the tokens: " + str(detected_tokens))
     # print(result)
-    st.session_state.oocsi.send(oocsi_channel, {
-        "tokens": token_array
-    })
+        st.session_state.oocsi.send(oocsi_channel, {
+            "tokens": token_array
+        })
