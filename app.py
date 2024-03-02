@@ -109,11 +109,13 @@ def detect_tokens(ocr_output, token_dicts):
 
 
 st.header("Mix & Match ML toolkit")
+st.subheader(
+    "Take a photo of your physical tokens to see the corresponding information ")
 oocsi_channel = st.text_input(
     'OOCSI channel (enter from the website)', 'MMMLtoolkit_')
 
 img_file_buffer = st.camera_input(
-    "Take a picture of your tokens", on_change=photoTaken)
+    "Take a picture of your tokens (it can be 90 degrees rotated)", on_change=photoTaken)
 # rand_nium = np.random.rand(1)
 # print(img_file_buffer)
 print(",,,,")
