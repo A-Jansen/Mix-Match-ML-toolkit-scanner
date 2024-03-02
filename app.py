@@ -69,7 +69,12 @@ def photoTaken():
     print("Yeahhh!")
 
 
-reader = easyocr.Reader(['tr', 'en'], gpu=False)
+@st.cache
+def load_model():
+    return easyocr.Reader(['tr', 'en'], gpu=False)
+
+
+reader = load_model
 
 
 def detect_tokens(ocr_output, token_dicts):
