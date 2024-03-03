@@ -8,30 +8,30 @@ if 'oocsi' not in st.session_state:
     st.session_state.oocsi = OOCSI('', 'oocsi.id.tue.nl')
 
 labeled_data_tokens = {
-    'Audio': {'Char': 'a', 'ASCII code': 97},
-    'Image': {'Char': 'b', 'ASCII code': 98},
-    'table': {'Char': 'c', 'ASCII code': 99},
-    'text': {'Char': 'd', 'ASCII code': 100},
-    'time series': {'Char': 'e', 'ASCII code': 101},
-    'series': {'Char': 'e', 'ASCII code': 101},
-    'video': {'Char': 'f', 'ASCII code': 102}
+    'Audio*': {'Char': 'a', 'ASCII code': 97},
+    'Image*': {'Char': 'b', 'ASCII code': 98},
+    'table*': {'Char': 'c', 'ASCII code': 99},
+    'text*': {'Char': 'd', 'ASCII code': 100},
+    'time series*': {'Char': 'e', 'ASCII code': 101},
+    'series*': {'Char': 'e', 'ASCII code': 101},
+    'video*': {'Char': 'f', 'ASCII code': 102},
+    'Audio *': {'Char': 'a', 'ASCII code': 97},
+    'Image *': {'Char': 'b', 'ASCII code': 98},
+    'table *': {'Char': 'c', 'ASCII code': 99},
+    'text *': {'Char': 'd', 'ASCII code': 100},
+    'time series *': {'Char': 'e', 'ASCII code': 101},
+    'series *': {'Char': 'e', 'ASCII code': 101},
+    'video *': {'Char': 'f', 'ASCII code': 102}
 }
 
 unlabeled_data_tokens = {
-    'Audio*': {'Char': 'g', 'ASCII code': 103},
-    'Audio *': {'Char': 'g', 'ASCII code': 103},
-    'Image*': {'Char': 'h', 'ASCII code': 104},
-    'Image *': {'Char': 'h', 'ASCII code': 104},
-    'table*': {'Char': 'i', 'ASCII code': 105},
-    'table *': {'Char': 'i', 'ASCII code': 105},
-    'text*': {'Char': 'j', 'ASCII code': 106},
-    'text *': {'Char': 'j', 'ASCII code': 106},
-    'time series*': {'Char': 'k', 'ASCII code': 107},
-    'time series *': {'Char': 'k', 'ASCII code': 107},
-    'series*': {'Char': 'k', 'ASCII code': 107},
-    'series *': {'Char': 'k', 'ASCII code': 107},
-    'video*': {'Char': 'l', 'ASCII code': 108},
-    'video *': {'Char': 'l', 'ASCII code': 108}
+    'Audio': {'Char': 'g', 'ASCII code': 103},
+    'Image': {'Char': 'h', 'ASCII code': 104},
+    'table': {'Char': 'i', 'ASCII code': 105},
+    'text': {'Char': 'j', 'ASCII code': 106},
+    'time series': {'Char': 'k', 'ASCII code': 107},
+    'series': {'Char': 'k', 'ASCII code': 107},
+    'video': {'Char': 'l', 'ASCII code': 108}
 }
 
 supervised_learning_tokens = {
