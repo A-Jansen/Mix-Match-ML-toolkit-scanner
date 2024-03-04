@@ -114,8 +114,8 @@ def detect_tokens(ocr_output, token_dicts):
 
 
 st.header("Mix & Match ML toolkit")
-st.subheader(
-    "Take a photo of your physical tokens to see the corresponding information ")
+st.markdown(
+    "Take a photo of your tokens to see the corresponding information on a connected laptop/other screen")
 oocsi_channel = st.text_input(
     'OOCSI channel (enter from the website)', 'MMMLtoolkit_')
 
@@ -153,6 +153,14 @@ if img_file_buffer is not None:
                 # turn image to numpy array
                 result = reader.readtext(rotated_img_array)
                 detected_tokens, token_set = detect_tokens(result, token_dicts)
+                if not token_set:
+                    rotated_img_pil = img_pil.rotate(-180)
+                    # Convert the rotated image back to a NumPy array
+                    rotated_img_array = np.array(rotated_img_pil)
+                    # turn image to numpy array
+                    result = reader.readtext(rotated_img_array)
+                    detected_tokens, token_set = detect_tokens(
+                        result, token_dicts)
 
         token_array = list(token_set)
 
@@ -161,7 +169,7 @@ if img_file_buffer is not None:
 
     if not token_array:
         st.warning(
-            "The site cannot detect the tokens in the image, please try retaking the image (with bettter light)")
+            "The site cannot detect the tokens in the image, please try retaking the image (e.g. with better light)")
     else:
         st.success("Detected the tokens: " + str(detected_tokens))
     # print(result)
