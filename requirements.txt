@@ -1,3 +1,3 @@
 easyocr
-streamlit ==1.20
+streamlit ==1.33
 Pillow
