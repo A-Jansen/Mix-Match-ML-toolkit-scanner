@@ -4,8 +4,6 @@ import numpy as np
 import easyocr
 from oocsi_source import OOCSI
 
-from memory_profiler import profile
-
 
 if 'oocsi' not in st.session_state:
     st.session_state.oocsi = OOCSI('', 'oocsi.id.tue.nl')
@@ -72,7 +70,6 @@ def photoTaken():
     print("Yeahhh!")
 
 
-@profile
 @st.cache_resource
 def load_model():
     return easyocr.Reader(['en', 'nl'], gpu=False)
